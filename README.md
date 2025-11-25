@@ -50,3 +50,33 @@
      │  - Narrative: “lesions here ↔ these sx”   │
      │  - Exec/grant-ready summary               │
      └───────────────────────────────────────────┘
+
+
+
+
+
+
+```
+image_path = "/mnt/data/your_mri_image.nii.gz"
+
+has_lesions, symptoms = analyze_brain_for_symptoms(image_path)
+
+print("Lesions present:", has_lesions)
+print("Likely symptoms:", symptoms)
+```
+
+```
+Example Output
+Lesions present: True
+Likely symptoms: [
+    'executive dysfunction',
+    'emotional regulation issues',
+    'anxiety-like symptoms',
+    'interoceptive disturbance',
+    'memory issues'
+]
+```
+
+
+
+
