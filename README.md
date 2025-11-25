@@ -1,97 +1,116 @@
-# ms_detection
-
-MS Detection & Symptom Mapping (ms_detection)
-Patient-Owned MRI Intelligence for Multiple Sclerosis
+# **ms_detection**
+### **MS Detection & Symptom Mapping — Patient-Owned MRI Intelligence for Multiple Sclerosis**
 
 This project is an open, modular pipeline designed to analyze a patient’s brain MRI and return two high-value outputs:
 
-Whether MS-like lesions are present, and
+1. **Whether MS-like lesions are present**  
+2. **Which cognitive, emotional, or physical symptom domains those lesions are most likely to affect**
 
-Which cognitive, emotional, or physical symptom domains those lesions are most likely to affect.
+The goal is **not diagnosis**.  
+The goal is **patient-owned insight** — giving individuals clarity on their MRI scans over time while keeping a clinician in the loop.
 
-The goal is not diagnosis.
-The goal is patient-owned insight — giving individuals a way to understand their MRI scans over time while keeping a clinician in the loop.
+The repository includes the full processing pipeline: *ingestion, harmonization, preprocessing, lesion detection, atlas overlap, symptom-domain mapping, and human-readable reporting.*
 
-This repo contains the full technical pipeline: ingestion, harmonization, preprocessing, lesion detection, atlas overlap, symptom mapping, and human-friendly reporting.
+---
 
-🚀 Core Idea
+## 🚀 **Core Idea**
 
-MS patients often undergo years of MRI scans without clear explanations of what changed, why it matters, or what symptoms to expect.
-This tool aims to fill that gap by providing:
+MS patients often undergo years of MRI scans without clear explanations of:
 
-Longitudinal lesion tracking
+- What changed  
+- Why it matters  
+- What symptoms to expect  
 
-Template-aligned, harmonized brain images
+This tool fills that gap by providing:
 
-Region-based lesion interpretation
+- Longitudinal lesion tracking  
+- Template-aligned, harmonized brain images  
+- Region-based lesion interpretation  
+- Symptom inference based on neuroscientific mapping  
+- Simple, patient-readable summaries  
 
-Symptoms inferred from neuroscientific mapping
+This is the foundation for a future **clinical-grade, one-click MRI intelligence engine**.
 
-Simple, patient-readable summaries
+---
 
-This is the foundation for a future clinical-grade, one-click MRI intelligence engine.
+## 🧠 **Pipeline Overview**
 
-🧠 Pipeline Overview
+A 6-stage neuroimaging + AI workflow:
 
-The codebase implements a 6-stage neuroimaging and AI workflow:
+---
 
-1. Ingest & Harmonize
+### **1. Ingest & Harmonize**
 
-Converts DICOM → NIfTI
+- Converts DICOM → NIfTI  
+- Standardizes voxel spacing and orientation  
+- Ensures comparability across scanners  
 
-Standardizes voxel spacing, orientation, and file structure
+**File:** `01_ingest_and_harmonize.py`
 
-Ensures MRIs from different scanners are comparable
+---
 
-01_ingest_and_harmonize.py
+### **2. Preprocess & Register to MNI**
 
-2. Preprocess & Register to MNI
+- N4 bias-field correction  
+- Skull stripping / brain extraction  
+- Registers to MNI152 template  
+- Produces clean, normalized volumes for AI  
 
-Bias-field correction
+**Files:**  
+`02_preprocess_and_register.py`  
+Includes: **`MNI152_T1_1mm.nii.gz` template**
 
-Skull stripping / brain extraction
+---
 
-Registers to a common template (MNI152)
+### **3. AI Lesion Detection (Model Inference)**
 
-Produces clean, normalized images for AI inference
+- UNet / nnU-Net–style deep learning  
+- Generates voxel-level lesion masks  
+- Returns lesion presence, volume, and distribution  
 
-02_preprocess_and_register.py
-Includes MNI152_T1_1mm.nii.gz template.
+**Files:**  
+`03_train_lesion_model.py`  
+`04_inference_and_longitudinal_report.py`
 
-3. AI Lesion Detection (Model Inference)
+---
 
-UNet/nnU-Net-style deep learning model
+### **4. Longitudinal Lesion Tracking**
 
-Outputs voxel-level lesion masks
+- Aggregates MRI results across dates  
+- Computes lesion count, lesion load, and emergence of new lesions  
+- Builds patient-level progression profiles  
 
-Detects lesion presence, volume, and shape
+Included in: `04_inference_and_longitudinal_report.py`
 
-03_train_lesion_model.py
-04_inference_and_longitudinal_report.py
+---
 
-4. Longitudinal Lesion Tracking
+### **5. Symptom–Lesion Mapping**
 
-Aggregates results across multiple MRI dates
+Maps lesions → brain regions → symptom domains.
 
-Computes lesion count, volume change, and new lesion emergence
+#### **Lesion–Atlas Overlap**
+Intersects lesion masks with anatomical atlases.  
+**File:** `4_1_loadAtlasAndComputeRegionOverlaps.py`
 
-Produces patient-level progression summaries
+#### **Region → Symptom Mapping**
+Maps affected regions to cognitive/emotional/motor functions.  
+**File:** `4_2_mapRegionsToSymptomDomains.py`
 
-Included within 04_inference_and_longitudinal_report.py.
+**Example domains:**
+- Executive function  
+- Emotional regulation  
+- Sensory processing  
+- Motor coordination  
+- Memory systems  
 
-5. Symptom–Lesion Mapping
+---
 
-Maps lesions to brain regions → symptom domains:
+### **6. Human-Readable Summary**
 
-Lesion–Atlas Overlap
-4_1_loadAtlasAndComputeRegionOverlaps.py
-Intersects lesion masks with anatomical atlases.
+Generates clinical-style interpretation:
 
-Region → Symptom Mapping
-4_2_mapRegionsToSymptomDomains.py
-Maps affected regions to cognitive/emotional/motor functions.
-
-Example domains:
+Lesions Detected: Yes
+Most likely affected domains:
 
 Executive function
 
@@ -99,25 +118,16 @@ Emotional regulation
 
 Sensory processing
 
-Motor coordination
 
-Memory systems
+**File:** `4_3_scanSummary.py`
 
-6. Human-Readable Summary
+---
 
-4_3_scanSummary.py
-Generates simple clinical-style text:
+## 🔥 **One-Function API (High-Level Entry Point)**
 
-Lesions Detected: Yes  
-Most likely affected domains:
-- Executive function
-- Emotional regulation
-- Sensory processing
+A single call runs the **entire pipeline**:
 
-🔥 One-Function API (High-Level Entry Point)
-
-A single call handles the entire pipeline:
-
+```python
 from analyze_brain_for_symptoms_image import analyze_brain_for_symptoms
 
 has_lesions, symptoms = analyze_brain_for_symptoms("example.nii.gz")
@@ -126,10 +136,11 @@ print("Lesions present:", has_lesions)
 print("Likely symptoms:", symptoms)
 
 
-Example output:
+Example Output:
 
 Lesions present: True
 Likely symptoms: ['executive dysfunction', 'emotional regulation challenges']
+```
 
 ```
 📁 Repo Structure
@@ -144,66 +155,56 @@ ms_detection/
 │── analyze_brain_for_symptoms_image.py
 │── MNI152_T1_1mm.nii.gz
 │── data/
-└── README.md   (this file)
+└── README.md
 ```
 
-🧪 Demo Instructions
+# 🧪 Demo Instructions
 
-If you want a simple test-drive:
+* To run a single-image analysis:
 
-python analyze_brain_for_symptoms_image.py /path/to/your_mri.nii.gz
+'''python analyze_brain_for_symptoms_image.py /path/to/your_mri.nii.gz'''
 
 
-No GPU required for the pipeline structure to run.
-Lesion model can be replaced with:
+# Notes:
+No GPU required for demonstrating the pipeline structure
 
-A real trained checkpoint, or
-
-A stub for demonstration/ip review.
+## Lesion model can be:
+* A real trained checkpoint
+* A stub for demonstration / IP review
 
 🏥 Clinical Vision
-
-This project supports a future product with:
-
-Upload MRI (.nii.gz or DICOM)
-
+A future version of this tool supports:
+Upload MRI (NIfTI or DICOM)
 Auto-run lesion detection
+Auto-map regions → symptoms
+Auto-generate PDF summaries
+Longitudinal tracking across years
 
-Auto-map to symptoms
+Optional clinician review for safety
 
-Auto-generate a PDF summary
-
-Longitudinal tracking for home use
-
-Clinician review layer for safety
-
-A “clinical version” would offer:
+A clinical-grade version would include:
 
 One-click PDF export
-
 Time-series lesion progression
-
-Symptom domain probability scores
-
-Secure patient data handling (HIPAA compliant)
+Symptom-domain probability mapping
+Secure patient data handling (HIPAA-compliant)
 
 🧩 Why This Matters
 
 MS imaging is complex.
 Patients deserve clarity.
 
-This tool gives individuals:
+This tool offers:
 
 A sense of control
 
-An explanation of why they feel what they feel
+Explanations for symptoms
 
-A way to track changes over time
+A way to track change over time
 
-A tool to better communicate with their clinicians
+Better communication with clinicians
 
-It is not diagnostic.
-It is empowerment through understanding.
+It is not diagnostic — it is empowerment through understanding.
 
 📚 Future Work
 
@@ -211,32 +212,29 @@ Train/finetune models on public MS datasets
 
 Expand symptom ontology
 
-Add diffusion & FLAIR support
+Add FLAIR + diffusion support
 
 Build a web app wrapper
 
 Integrate one-click PDF export
 
-Deploy as lightweight edge/fog module for patient-owned compute
+Deploy as fog/edge compute module for patient-owned devices
 
 👤 Author
 
-Built by Ali Payne
+Ali Payne
 Entrepreneur, engineer, and researcher exploring patient-centered neurotechnology.
-
-
-
-# diagram 
+```
+Pipeline Diagram
           ┌───────────────────────────┐
           │  Patient-owned MRI data  │
-          │   (DICOM from Kettering  │
-          │    & outside facilities) │
+          │   (DICOM from hospitals) │
           └───────────┬──────────────┘
                       │
                       ▼
      ┌───────────────────────────────────────┐
      │  1. Ingest & Harmonize               │
-     │  - DICOM → NIfTI (SimpleITK/NiBabel) │
+     │  - DICOM → NIfTI                     │
      │  - Standardize orientation/voxel size│
      └───────────────────┬──────────────────┘
                          │
@@ -244,14 +242,14 @@ Entrepreneur, engineer, and researcher exploring patient-centered neurotechnolog
      ┌────────────────────────────────────────────┐
      │  2. Preprocess & Normalize                │
      │  - Bias correction (ANTs N4)              │
-     │  - Brain extraction (FSL/ANTs)            │
-     │  - Register to MNI (ANTs)                 │
+     │  - Brain extraction                       │
+     │  - Register to MNI                        │
      └───────────────────┬──────────────────────┘
                          │
                          ▼
      ┌────────────────────────────────────────────┐
      │  3. AI Lesion Detection                    │
-     │  - MONAI / UNet / nnU-Net                  │
+     │  - UNet / nnU-Net                          │
      │  - Output: voxelwise lesion masks          │
      └───────────────────┬──────────────────────┘
                          │
@@ -259,51 +257,42 @@ Entrepreneur, engineer, and researcher exploring patient-centered neurotechnolog
      ┌────────────────────────────────────────────┐
      │  4. Lesion Quantification & Longitudinal  │
      │  - Lesion count, volume, location         │
-     │  - Time series vs diagnosis               │
+     │  - Time-series progression                │
      └───────────────────┬──────────────────────┘
                          │
                          ▼
      ┌────────────────────────────────────────────┐
-     │  5. Symptom–Lesion Mapping (NEW)         │
-     │  - Intersect lesions with brain atlases   │
+     │  5. Symptom–Lesion Mapping                │
+     │  - Atlas intersection                     │
      │  - Map regions → cognitive/emotional fxn  │
-     │  - Generate “likely symptom domains”      │
+     │  - Generate likely symptom domains        │
      └───────────────────┬──────────────────────┘
                          │
                          ▼
      ┌────────────────────────────────────────────┐
      │  6. Clinical Review & Reporting           │
      │  - Overlays + regional labels             │
-     │  - Narrative: “lesions here ↔ these sx”   │
-     │  - Exec/grant-ready summary               │
+     │  - Narrative summary                      │
      └───────────────────────────────────────────┘
 
-
-
-
-
-# single function 
-```
+# Single-Function Example
 image_path = "/mnt/data/your_mri_image.nii.gz"
 
 has_lesions, symptoms = analyze_brain_for_symptoms(image_path)
 
 print("Lesions present:", has_lesions)
 print("Likely symptoms:", symptoms)
-```
 
-```
-Example Output
+
+# Example Output:
+
 Lesions present: True
 Likely symptoms: [
-    'executive dysfunction',
-    'emotional regulation issues',
-    'anxiety-like symptoms',
-    'interoceptive disturbance',
-    'memory issues'
+    "executive dysfunction",
+    "emotional regulation issues",
+    "anxiety-like symptoms",
+    "interoceptive disturbance",
+    "memory issues"
 ]
+
 ```
-
-
-
-
