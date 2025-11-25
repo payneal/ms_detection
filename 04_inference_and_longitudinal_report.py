@@ -86,3 +86,15 @@ for _, row in df.iterrows():
 df_lesions = pd.DataFrame(lesion_records).sort_values("scan_date")
 df_lesions.to_csv("lesion_summary.csv", index=False)
 df_lesions
+
+# Quick longitudinal plot (what you’ll show neurology + execs):
+
+plt.figure()
+plt.plot(df_lesions["scan_date"], df_lesions["lesion_volume_ml"], marker="o")
+plt.xticks(rotation=45)
+plt.xlabel("Scan date")
+plt.ylabel("Lesion volume (ml)")
+plt.title("Lesion burden over time")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
