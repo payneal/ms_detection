@@ -1,6 +1,9 @@
 # **ms_detection**
 ### **MS Detection & Symptom Mapping — Patient-Owned MRI Intelligence for Multiple Sclerosis**
 
+![Image](https://github.com/user-attachments/assets/0cfa9579-a40f-4b83-b74f-3240223edc45)
+
+
 This project is an open, modular pipeline designed to analyze a patient’s brain MRI and return two high-value outputs:
 
 1. **Whether MS-like lesions are present**  
