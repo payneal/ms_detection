@@ -1,0 +1,2 @@
+# proposals submitted:
+  * kettering
