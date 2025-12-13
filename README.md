@@ -1,6 +1,18 @@
 # **ms_detection**
 ### **MS Detection & Symptom Mapping — Patient-Owned MRI Intelligence for Multiple Sclerosis**
 
+* Folder structure
+```
+README.TXT                    - This readme file
+bussiness_modals              - PDF of 90 day implementation plan
+data                          - Patient Data ( Dicom MRI ) 
+images                        - images used in this readme file
+libary                        - code for functionality
+pitch_decks                   - varrious pitch decks (clincial, executive, general)
+proposals                     - proposals ex Kettering Health
+templates                     - General to compare to Patient Data  
+```
+
 ![Image](https://github.com/user-attachments/assets/0cfa9579-a40f-4b83-b74f-3240223edc45)
 
 
