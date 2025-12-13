@@ -1,6 +1,16 @@
 # **ms_detection**
 ### **MS Detection & Symptom Mapping — Patient-Owned MRI Intelligence for Multiple Sclerosis**
 
+This project is an open, modular pipeline designed to analyze a patient’s brain MRI and return two high-value outputs:
+
+1. **Whether MS-like lesions are present**  
+2. **Which cognitive, emotional, or physical symptom domains those lesions are most likely to affect**
+
+The goal is **not diagnosis**.  
+The goal is **patient-owned insight** — giving individuals clarity on their MRI scans over time while keeping a clinician in the loop.
+
+The repository includes the full processing pipeline: *ingestion, harmonization, preprocessing, lesion detection, atlas overlap, symptom-domain mapping, and human-readable reporting.*
+
 * Folder structure
 ```
 README.TXT                    - This readme file
@@ -14,17 +24,6 @@ templates                     - General to compare to Patient Data
 ```
 
 ![Image](https://github.com/user-attachments/assets/0cfa9579-a40f-4b83-b74f-3240223edc45)
-
-
-This project is an open, modular pipeline designed to analyze a patient’s brain MRI and return two high-value outputs:
-
-1. **Whether MS-like lesions are present**  
-2. **Which cognitive, emotional, or physical symptom domains those lesions are most likely to affect**
-
-The goal is **not diagnosis**.  
-The goal is **patient-owned insight** — giving individuals clarity on their MRI scans over time while keeping a clinician in the loop.
-
-The repository includes the full processing pipeline: *ingestion, harmonization, preprocessing, lesion detection, atlas overlap, symptom-domain mapping, and human-readable reporting.*
 
 ---
 
