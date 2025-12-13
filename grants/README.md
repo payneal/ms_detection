@@ -1,138 +1,125 @@
-# Grant & Non-Dilutive Funding Opportunities
+# Funding Strategy & Target Opportunities
 
-This project aligns with multiple federal, state, and foundation funding programs focused on **medical imaging, AI, digital health, patient engagement, and healthcare innovation**. Below is a curated list of relevant grant pathways that can support development, validation, and early deployment.
-
----
-
-## 1. NIH – National Institute of Biomedical Imaging and Bioengineering (NIBIB)
-
-**Focus:**  
-AI and machine learning for medical image analysis, interpretation, and clinical support tools.
-
-**Why this fits:**  
-This project applies modern imaging pipelines, atlas-based mapping, and explainable outputs to improve understanding of MRI data.
-
-**Relevant Grant Mechanisms:**
-- **R21** – Exploratory / early-stage innovation  
-- **R03** – Small pilot or feasibility studies  
-- **R01** – Larger multi-year research programs (later stage)
-
-**Keywords to use:**  
-`medical imaging`, `AI`, `MRI analysis`, `patient education`, `image interpretation`
+This project is designed as a modular neuroimaging software and analysis resource that can support multiple funding pathways depending on maturity, scope, and use case. The following opportunities represent the **primary, secondary, and commercialization-aligned funding tracks** for the MS MRI Intelligence Pipeline.
 
 ---
 
-## 2. NIH SBIR / STTR (Small Business Innovation Research)
+## 1. RFA-OD-25-010  - https://www.grants.gov/search-results-detail/359648
+### Primary Target — Research Software & Infrastructure (Best Fit)
 
-**Focus:**  
-Non-dilutive funding for small businesses commercializing biomedical and healthcare technologies.
+**Sponsoring Body:**  
+NIH Office of the Director (OD)
 
-**Why this fits:**  
-The project is a translational AI imaging tool with clear commercialization and deployment pathways.
+**Strategic Focus:**  
+Cross-cutting biomedical research software, data infrastructure, and reusable computational resources.
 
-**Funding Structure:**
-- **Phase I:** ~$150k–$300k (feasibility, prototype validation)  
-- **Phase II:** Up to ~$1M (scaling, pilots, commercialization prep)
+**Why This Fits the Project:**  
+The MS MRI Intelligence Pipeline is fundamentally a **research software resource**, not a single-disease hypothesis study. It provides reusable components for:
+- MRI preprocessing and normalization
+- Deep-learning-based lesion segmentation
+- Atlas-based regional quantification
+- Explainable, interpretable mapping from imaging findings to functional domains
+- Longitudinal comparison across imaging timepoints
 
-**Benefits:**
-- No equity dilution  
-- Encourages early clinical pilots  
-- Strong credibility signal to investors
+MS serves as the **initial use case**, but the architecture is intentionally generalizable across neurological imaging studies.
 
----
+**Key Alignment Points:**
+- Open, modular software architecture
+- Reproducibility and versioned models/atlases
+- FAIR principles (Findable, Accessible, Interoperable, Reusable)
+- Broad utility to NIH-funded investigators
+- Clear sustainability and governance plans
 
-## 3. NSF Seed Fund – Digital Health & AI
-
-**Focus:**  
-High-risk, high-impact digital health and AI innovations with societal benefit.
-
-**Why this fits:**  
-The project combines AI, open-source tooling, and patient-centered healthcare transparency.
-
-**Relevant Topics:**
-- Digital Health  
-- Applied AI / Machine Learning  
-- Human-centered computing
-
-**Funding Range:**  
-Typically ~$250k for early-stage technology development.
+**Positioning Guidance:**  
+Applications should emphasize:
+- software infrastructure
+- community reuse and adoption
+- long-term maintenance and extensibility  
+Clinical deployment and commercialization should be explicitly out of scope.
 
 ---
 
-## 4. ARPA-H (Advanced Research Projects Agency for Health)
+## 2. PAR-25-238  - https://grants.nih.gov/grants/guide/pa-files/PAR-25-238.html
+### Secondary Target — Methods Development & Research Resource
 
-**Focus:**  
-Transformational health technologies with the potential to significantly improve outcomes.
+**Mechanism Type:**  
+Program Announcement with Review (PAR)
 
-**Why this fits:**  
-Patient-owned, explainable MRI intelligence aligns with ARPA-H’s interest in bold, system-level innovation.
+**Strategic Focus:**  
+Investigator-initiated development of novel computational or analytic methods that advance biomedical research.
 
-**Notes:**
-- Often milestone-based  
-- Competitive but high-impact  
-- Strong emphasis on outcome improvement
+**Why This Fits (with Proper Framing):**  
+The pipeline contributes a **methodological framework** that integrates:
+- voxel-level segmentation
+- atlas-based anatomical grounding
+- region-level burden vectors
+- explainable semantic interpretation
 
----
+This framing positions the work as a **methods and resource contribution**, not a clinical tool.
 
-## 5. AHRQ – Agency for Healthcare Research and Quality
+**Key Alignment Points:**
+- Methodological innovation in neuroimaging analysis
+- Generalizable segmentation-to-interpretation workflows
+- Validation, benchmarking, and reproducibility
+- Dissemination as an open research resource
 
-**Focus:**  
-Healthcare quality, patient safety, and communication improvement.
+**Positioning Guidance:**  
+Applications should avoid:
+- hospital workflows
+- patient-facing deployment
+- product or revenue language  
 
-**Why this fits:**  
-This project directly targets improved patient understanding of diagnostic imaging and reduced communication friction.
-
-**Relevant Areas:**
-- Patient education  
-- Health IT usability  
-- Care delivery innovation
-
----
-
-## 6. CMS Innovation & Care Model Grants
-
-**Focus:**  
-Improving care quality, patient experience, and efficiency in healthcare delivery.
-
-**Why this fits:**  
-Patient-readable MRI summaries may reduce follow-up confusion, unnecessary visits, and clinician burden.
-
-**Use Case:**
-- Pilot studies tied to patient experience metrics  
-- Care coordination and longitudinal monitoring
+Instead, emphasize:
+- analytic rigor
+- research utility
+- extensibility to other imaging studies
 
 ---
 
-## 7. Foundations & Non-Profit Grants
+## 3. NIH SBIR / STTR (NIBIB or NINDS)  - https://www.sbir.gov/
+### Commercialization Track — Productization, Pilots, and Cloud Deployment
 
-### Commonwealth Fund
-**Focus:**  
-Healthcare delivery improvement, patient experience, and equity.
+**Mechanism Type:**  
+Small Business Innovation Research / Small Business Technology Transfer
 
-**Why this fits:**  
-The project emphasizes clarity, access, and patient empowerment in complex care journeys.
+**Strategic Focus:**  
+Translation of innovative biomedical technologies into deployable products.
+
+**Why This Fits the Project:**  
+Once validated as a research resource, the pipeline naturally evolves into a **scalable imaging intelligence platform** capable of supporting:
+- hospital pilots
+- patient-facing reporting
+- secure cloud-based processing (e.g., AWS)
+- longitudinal care support
+
+**Key Alignment Points:**
+- Clear commercialization pathway
+- Non-diagnostic decision-support positioning
+- Pilot studies with healthcare partners
+- Secure, compliant cloud infrastructure
+- Defined customer and market need
+
+**Positioning Guidance:**  
+This mechanism is appropriate for:
+- AWS deployment
+- operational scaling
+- hospital and health-system pilots
+- early revenue models  
+
+Research infrastructure language should transition to **product readiness and validation**.
 
 ---
 
-### Corporate & Pharma Foundations
-Examples include Pfizer, Roche, and other healthcare foundations that support:
-- Patient education tools  
-- Digital health pilots  
-- Quality improvement initiatives
+## Funding Roadmap Summary
 
-**Important:**  
-These grants typically fund pilots, deployment studies, and dissemination — not core R&D.
+| Stage | Mechanism | Primary Goal |
+|------|----------|--------------|
+| Research Infrastructure | RFA-OD-25-010 | Sustainable, reusable software resource |
+| Methods & Validation | PAR-25-238 | Analytic rigor and generalizable methods |
+| Translation & Scale | NIH SBIR/STTR | Product, pilots, and deployment |
 
 ---
 
-## 8. Grant Discovery & Tracking
+## Strategic Note
 
-Primary federal grant database:
-- **Grants.gov**
-
-Suggested search terms:
-AI medical imaging
-digital health
-patient education
-neurology
-MRI analysis
+These funding pathways are **complementary, not mutually exclusive**. Early support for software infrastructure and methods development de-risks later commercialization and accelerates adoption in clinical and operational environments.
