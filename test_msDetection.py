@@ -22,7 +22,9 @@ class TestMSDetection(unittest.TestCase):
         return super().tearDown()       
     
 
-    def test_ingest_and_harmonize(self):
+    def test_pipe_line(self):
+        
+        # ingest_and_harmonize
         records = self.detector.ingest_and_harmonize()
         self.assertIsNotNone(records)
         # confirm this is a dataframe with expected columns
@@ -33,7 +35,11 @@ class TestMSDetection(unittest.TestCase):
         nifti_files = list(self.detector.nifti_output_path.glob("*.nii.gz"))  
         self.assertGreater(len(nifti_files), 0)
       
-
+        # preprocess_and_register
+        preproc_df = self.detector.preprocess_and_register()
+        self.assertTrue(preproc_df)
+    
+    
     def test_detect_empty_data(self):
         data = []
         result = self.detector.detect(data)

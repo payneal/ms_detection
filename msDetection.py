@@ -9,6 +9,7 @@ class MSDection:
     def __init__(self, dicom_path, nifti_output_path):
         self.dicom_path = dicom_path
         self.nifti_output_path = nifti_output_path
+        self.df_manifest = None
 
     def detect(self, data):
         # Placeholder for multi-scale detection logic
@@ -82,3 +83,6 @@ class MSDection:
         df = pd.DataFrame(records)
         df.to_csv("scan_manifest.csv", index=False)
         return df
+    
+    def preprocess_and_register(self):  
+        return False
