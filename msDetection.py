@@ -6,8 +6,9 @@ import pandas as pd
 
 
 class MSDection:
-    def __init__(self):
-        pass
+    def __init__(self, dicom_path, nifti_output_path):
+        self.dicom_path = dicom_path
+        self.nifti_output_path = nifti_output_path
 
     def detect(self, data):
         # Placeholder for multi-scale detection logic
@@ -15,10 +16,10 @@ class MSDection:
         print("Performing multi-scale detection...")
         return {"detections": []}
     
-    def ingest_and_harmonize(self, dicom_path, nifti_output_path):
+    def ingest_and_harmonize(self):
        
-        RAW_DICOM_ROOT = pathlib.Path(dicom_path)
-        NIFTI_ROOT = pathlib.Path(nifti_output_path)
+        RAW_DICOM_ROOT = pathlib.Path(self.dicom_path)
+        NIFTI_ROOT = pathlib.Path(self.nifti_output_path)
 
         NIFTI_ROOT.mkdir(parents=True, exist_ok=True)
 
