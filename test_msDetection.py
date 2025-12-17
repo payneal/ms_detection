@@ -63,6 +63,8 @@ class TestMSDetection(unittest.TestCase):
         jpeg_location = self.detector.convert_nii_to_image(nifti_files[0], "./data/images/")
         self.assertTrue(self.image_conversion_test(jpeg_location[0]))
 
+        # check what this is ... go through all templates later 
+        self.detector.convert_nii_to_image("./data/templates/MNI152_T1_1mm.nii.gz", "./data/hold/")
 
         # preprocess_and_register
         preproc_df = self.detector.preprocess_and_register()
