@@ -16,12 +16,17 @@ The repository includes the full processing pipeline: *ingestion, harmonization,
 README.TXT                    - This readme file
 bussiness_modals              - PDF of 90 day implementation plan
 data                          - Patient Data ( Dicom MRI ) 
+grants			- grant information 
 images                        - images used in this readme file
 libary                        - code for functionality
+myenv                         - enviroment needed for python 
 pitch_decks                   - varrious pitch decks (clincial, executive, general)
 proposals                     - proposals ex Kettering Health
-templates                     - General to compare to Patient Data  
-grants			      - grant information 
+.gitignore                    - stuff to ignore
+app.py                        - graphql endpoint
+test_app.py                   - test for app
+msDetector.py                 - main code for ms detector 
+test_msDetector.py            - test for main code 
 ```
 
 ![Image](https://github.com/user-attachments/assets/0cfa9579-a40f-4b83-b74f-3240223edc45)
