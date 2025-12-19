@@ -10,20 +10,20 @@ class TestMSDetection(unittest.TestCase):
             image_output_path=pathlib.Path("./data/images").resolve())  
 
 
-    def tearDown(self):
+    # def tearDown(self):
         # Clean up test files
-        for file in self.detector.nifti_output_path.iterdir(): file.unlink()   
+      #  for file in self.detector.nifti_output_path.iterdir(): file.unlink()   
 
         # delete csv file if created
-        csv_file = pathlib.Path("scan_manifest.csv")
-        if csv_file.exists(): csv_file.unlink()  
+       # csv_file = pathlib.Path("scan_manifest.csv")
+       # if csv_file.exists(): csv_file.unlink()  
         
         # clean up created images
-        for file in self.detector.image_output_path.iterdir(): file.unlink()
+       # for file in self.detector.image_output_path.iterdir(): file.unlink()
 
         # reset detector
-        self.detector = None
-        return super().tearDown()       
+       # self.detector = None
+       # return super().tearDown()       
     
 
     def image_conversion_test(self, path):
