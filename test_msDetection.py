@@ -1,29 +1,31 @@
 import unittest
 import pathlib
 from msDetection import MSDection
+from libary.util.medicalFormatChanger import MedicalFormatChanger
 
 class TestMSDetection(unittest.TestCase):
     def setUp(self):
+        self .changer = MedicalFormatChanger()
         self.detector = MSDection(
             dicom_path=pathlib.Path("./data/dicom").resolve(), 
             nifti_output_path=pathlib.Path("./data/nifti").resolve(), 
             image_output_path=pathlib.Path("./data/images").resolve())  
 
 
-    # def tearDown(self):
+    def tearDown(self):
         # Clean up test files
-      #  for file in self.detector.nifti_output_path.iterdir(): file.unlink()   
+        for file in self.detector.nifti_output_path.iterdir(): file.unlink()   
 
         # delete csv file if created
-       # csv_file = pathlib.Path("scan_manifest.csv")
-       # if csv_file.exists(): csv_file.unlink()  
+        csv_file = pathlib.Path("scan_manifest.csv")
+        if csv_file.exists(): csv_file.unlink()  
         
         # clean up created images
-       # for file in self.detector.image_output_path.iterdir(): file.unlink()
+        for file in self.detector.image_output_path.iterdir(): file.unlink()
 
         # reset detector
-       # self.detector = None
-       # return super().tearDown()       
+        self.detector = None
+        return super().tearDown()       
     
 
     def image_conversion_test(self, path):
@@ -60,11 +62,11 @@ class TestMSDetection(unittest.TestCase):
         self.assertGreater(len(nifti_files), 0)
       
         # check .nii file to jpeg conversion
-        jpeg_location = self.detector.convert_nii_to_image(nifti_files[0], "./data/images/")
+        jpeg_location = self.changer.convert_nii_to_image(nifti_files[0], "./data/images/")
         self.assertTrue(self.image_conversion_test(jpeg_location[0]))
 
         # check what this is ... go through all templates later 
-        self.detector.convert_nii_to_image("./data/templates/MNI152_T1_1mm.nii.gz", "./data/hold/")
+        # self.changer.convert_nii_to_image("./data/templates/MNI152_T1_1mm.nii.gz", "./data/hold/")
 
         # preprocess_and_register
         preproc_df = self.detector.preprocess_and_register()
