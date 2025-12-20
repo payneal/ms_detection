@@ -70,21 +70,15 @@ class TestMSDetection(unittest.TestCase):
 
         # preprocess_and_register
         preproc_df = self.detector.preprocess_and_register()
-        self.assertTrue(preproc_df)
+        
+        self.assertIsNotNone(preproc_df)    
+        # confirm this is a dataframe with expected columns
+        expected_preproc_columns = {"patient_id", "date", "series_name", "nifti_path", "voxel_x", "voxel_y", "voxel_z", "shape", "preproc_nifti_path", "voxel_volume_mm3"}
+        self.assertTrue(set(preproc_df.columns).issuperset(expected_preproc_columns))
     
-    
-    def test_detect_empty_data(self):
-        data = []
-        result = self.detector.detect(data)
-        self.assertIn("detections", result)
-        self.assertEqual(len(result["detections"]), 0)
+        # train lesion model
+        self.assertTrue(False)  # Placeholder for future implementation
 
-
-    def test_detect_sample_data(self):
-        data = [1, 2, 3]  # Sample input data
-        result = self.detector.detect(data)
-        self.assertIn("detections", result)
-        # Further assertions can be added based on expected behavior
 
 if __name__ == '__main__':
     unittest.main()

@@ -16,10 +16,10 @@ The repository includes the full processing pipeline: *ingestion, harmonization,
 README.TXT                    - This readme file
 bussiness_modals              - PDF of 90 day implementation plan
 data                          - Patient Data ( Dicom MRI ) 
-grants			- grant information 
+grants			              - grant information 
 images                        - images used in this readme file
 libary                        - code for functionality
-myenv                         - enviroment needed for python 
+enviroment.yml                - enviroment needed for python 
 pitch_decks                   - varrious pitch decks (clincial, executive, general)
 proposals                     - proposals ex Kettering Health
 .gitignore                    - stuff to ignore
